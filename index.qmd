@@ -1,13 +1,25 @@
-# College Colloquium Final
-## Calculating Molar Mass of Chemical Compounds
+---
+title: "College Colloquium Final — Scientific Computing & Molar Mass"
+author: "Lisandra Perez Beltran"
+date: November 14, 2025
+format: html
+---
 
-The concept of **molar mass** lies at the heart of chemistry because it connects the microscopic world of atoms to the macroscopic world of measurable substances. Molar mass, measured in grams per mole (g/mol), represents the mass of one mole of a chemical substance. One mole equals \(6.022 \times 10^{23}\) entities — the famous **Avogadro’s number**.  Understanding molar mass is essential because it allows chemists to convert between the mass of a substance and the number of particles it contains. This relationship is the foundation of stoichiometry, chemical reactions, and solution chemistry. For example, knowing that one mole of carbon dioxide (CO₂) has a molar mass of 44.01 g/mol allows a scientist to determine that 88.02 grams of CO₂ equals exactly two moles.  
-This project uses **Python** and **Quarto** to demonstrate how programming tools like SymPy, pandas, and Matplotlib can automate and visualize chemical concepts. The goal is to calculate molar masses of different compounds, organize the results into tables, display graphical relationships, and symbolically represent the equations used in chemistry.  
 
 
 
-## import libraries 
-To perform calculations, we import several Python libraries. `SymPy` handles symbolic mathematics, `pandas` creates and manages tables, and `matplotlib.pyplot` produces graphs for visualization.
+## Introduction: The Value of Scientific Computing in Chemistry
+Scientific computing is transforming the way students, scientists, and industries approach chemistry. In the past, tasks like calculating molar mass, analyzing molecular structure, or modeling reactions were often done entirely by hand, which introduced human error and limited the complexity of problems that could be solved. My project demonstrates how scientific computing enhances accuracy, improves efficiency, and makes chemical analysis more accessible. By designing functions in Python to compute molar masses, parse chemical formulas, and visualize trends using graphs, I show how computational tools strengthen understanding rather than replace it. My argument is that scientific computing is not just helpful—it is essential for modern scientific learning and research.
+One of the key points supporting this claim is the reliability and repeatability of computer-based calculations. When calculating molar masses manually, students must carefully read formulas, identify each element, apply subscripts, and add atomic masses correctly. A single misread number or incorrect symbol results in the wrong answer. Scientific computing eliminates this problem by automating the parsing process through code. This project demonstrates that when computers handle repetitive, rule-based tasks, students can spend more time learning the science and less time worrying about arithmetic mistakes.
+
+
+
+
+## Python Libraries: How It Enable Scientific Problem-Solving
+The first section of my code imports essential Python libraries—SymPy, pandas, and matplotlib. Each of these tools contributes differently to scientific computing, and understanding their roles helps build the argument for why computational methods have become foundational in chemistry. SymPy allows symbolic math operations, such as creating mathematical expressions representing molar mass equations. This is something virtually impossible to replicate by hand with the same clarity and automation. Pandas is used to create tables, which organize chemical data visually and make trends easier to recognize. Finally, matplotlib enables the construction of graphs, allowing us to visualize relationships such as the correlation between atom count and molar mass.
+
+#### Import Libraries 
+
 
 ```{python}
 import sympy as sp
@@ -15,7 +27,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-## Define the atomic masses (amu) of the first 25 elements in the periodic table (g/mol)
+
+## Building the Atomic Mass Dictionary: A Foundation for Automation
+The dictionary of atomic masses demonstrates another advantage of scientific computation—centralized, organized information. Listing the atomic masses of the first 25 elements in a dictionary might seem simple, but it reflects a greater benefit: once entered, these values can be accessed automatically by any function that needs them. Students no longer flip through periodic tables or scroll through online charts every time they calculate the molar mass of a substance. Instead, the computer stores these values reliably and retrieves them instantly.
+From an educational perspective, this helps students focus on why molar masses matter, not on the tedious process of looking up each value repeatedly. From a computational perspective, it demonstrates how data structures like dictionaries reduce errors associated with manual transcription. This supports the larger thesis that scientific computing allows chemistry students to work more efficiently and with fewer mistakes.
+Additionally, using a dictionary emphasizes the importance of structured data storage when dealing with scientific information. Unlike handwritten notes, digital data does not fade, get misplaced, or become illegible. It provides consistency across calculations, which is crucial in scientific analysis. The fact that such a small piece of code can store and use scientific constants underscores how computing democratizes chemical problem-solving.
+
+#### Define The Atomic Masses (amu) Of The First 25 Elements In The Periodic Table (g/mol)
+
 
 ```{python}
 atomic_masses = {
@@ -53,16 +72,25 @@ atomic_masses = {
 ```
 
 
-## Function to calculate molar mass
+## Parsing Chemical Formulas: A Demonstration of Computational Precision
+The next major section of my project introduces a function that parses chemical formulas like "H2O" or "CaF2" into their separate elements and counts. The find_elements() function breaks compounds into element symbols, identifies whether each symbol contains one or two letters, reads any numerical subscripts, and compiles everything into a structured list for calculation. This automated process demonstrates one of the strongest benefits of scientific computing: precision in rule-based systems.
+Chemical formulas follow predictable structural rules. Elements begin with capital letters, may or may not include lowercase letters, and may have numerical subscripts. While humans understand these patterns intuitively, consistently applying the rules without mistakes becomes challenging with longer or more complex formulas. A computer, however, never becomes tired, distracted, or inconsistent. Its pattern recognition through regular expressions ensures every molecule is interpreted correctly.
+This supports the essay’s argument because it shows that computers excel at systematic tasks that humans often perform imperfectly. Instead of treating scientific computing as a threat to learning, we can view it as a tool that strengthens understanding by removing the burden of error-prone tasks. Students remain responsible for interpreting the results, but computers ensure those results are accurate.
+
+
+#### Function To Calculate Molar Mass
+
 
 ```{python}
 import re
 def find_elements(compound):
     elements = []
-    while compound != "":  #while its not empty 
+    atoms = 0
+    while compound != "":  # while its not empty 
         # If only one character left
-        if len(compound) == 1: #seeing if there's onlyone more element  
+        if len(compound) == 1: # seeing if there's onlyone more element  
             elements.append((compound, 1)) # adding that one element to the elements list, with a count of 1
+            atoms += 1
             break # stops the loop, meaning that we are done
         # If second char is lowercase (two-letter element)
         elif compound[1].islower(): # checking if it's a two letter element 
@@ -70,9 +98,11 @@ def find_elements(compound):
             if len(compound) > 2 and compound[2].isdigit(): # checking if there are still more characters and if it's a number 
                 count = int(compound[2]) # if it is a number, assign that number to count 
                 elements.append((element, count))
+                atoms += count
                 compound = compound[3:] # its deleting the first 3 from compound (two letter element + count)
             else:#if there is no number after the two letter element 
                 elements.append((element, 1))
+                atoms += 1
                 compound = compound[2:]
         # Otherwise single-letter element
         else:
@@ -80,33 +110,100 @@ def find_elements(compound):
             if len(compound) > 1 and compound[1].isdigit():
                 count = int(compound[1])
                 elements.append((element, count))
+                atoms += count
                 compound = compound[2:]
             else:
                 elements.append((element, 1))
+                atoms += 1
                 compound = compound[1:]
-    return(elements)
+    return elements
 
 def molar_mass(formula):
+    a = 0
     elements = find_elements(formula)    
     total_mass = 0
     for element, count in elements:
         total_mass += atomic_masses[element] * count
-    return total_mass
+        a += count
+    return total_mass, a
 ```
 
 
-## Test with some commonly used compounds
+## Calculating Molar Mass: From Concept to Computation
+The custom-built molar_mass() function is central to the project’s purpose. It takes a chemical formula and calculates the sum of the atomic masses multiplied by each element’s count. This replicates a core chemistry skill—but through code rather than manual arithmetic. What makes this compelling evidence for scientific computing is that the logic remains the same: the program does not magically “know” chemistry; instead, it follows the exact steps a student would, only faster and with fewer mistakes.
+This supports the thesis that scientific computing enhances learning: by coding chemistry concepts, students must understand the rules deeply enough to teach them to a machine. The function forces the programmer to analyze questions like:
+How do you identify an element symbol?
+What happens when an element has no subscript?
+How do you handle multi-digit subscripts?
+What if the compound contains parentheses?
+These are not surface-level questions. Thinking through them reinforces comprehension far better than simply memorizing molar masses for a test. Therefore, scientific computing not only assists with calculation but strengthens conceptual understanding.
+
+
+#### Test With Some Commonly Used Compounds
 - The table below lists the calculated molar masses using atomic weights from the periodic table.
+
+
 ```{python}
 compounds = ["H2O", "CO2", "SO2", "CaF2", "NaCl", "Cl2"]
-masses = [molar_mass(c) for c in compounds]
+atoms = []
+masses = []
+for c in compounds:
+    mass, atom = molar_mass(c)
+    masses.append(mass)
+    atoms.append(atom)
 ```
 
 
-## Table 1
-- The table above lists the calculated molar masses using atomic weights from the periodic table.
+## Extending Functionality: Handling Parentheses in Chemical Formulas
+Chemistry often includes compounds with parentheses, such as Mg(OH)₂ or Al(OH)₃. These formulas contain groups of atoms that must be multiplied by the subscript outside the parentheses. Without handling these structures, a molar-mass calculator would be incomplete. The extended version of molar_mass() provides this functionality through recursive parsing.
+This supports the essay’s argument because it shows how computing adapts to scientific complexity. Students can extend the logic of a simple function to accommodate more challenging structures, reinforcing the idea that coding requires—and builds—critical thinking. In addition, recursive algorithms reveal the deeper connections between computer science and chemistry: both fields rely on patterns, structure, and rules. Scientific computing bridges these concepts, encouraging interdisciplinary learning.
+
+#### Function To Calculate Molar Mass With Parentheses
+
 
 ```{python}
+import re
+def molar_mass(formula):
+    # Helper function to recursively evaluate parentheses
+    def parse(formula):
+        # Find any parentheses groups like (OH)2
+        while '(' in formula:
+            match = re.search(r'\(([A-Za-z0-9]+)\)(\d*)', formula)
+            if not match:
+                break
+            group, count = match.groups()
+            count = int(count) if count else 1
+            group_mass = parse(group)  # Recursively calculate inside parentheses
+            formula = formula[:match.start()] + str(group_mass * count) + formula[match.end():]
+
+        # Once parentheses are resolved, calculate total for remaining elements
+        elements = re.findall(r'([A-Z][a-z]*)(\d*)', formula)
+        total = 0
+        for element, count in elements:
+            if element not in atomic_masses:
+                raise ValueError(f"Unknown element: {element}")
+            count = int(count) if count else 1
+            total += atomic_masses[element] * count
+        return total
+
+    return parse(formula)
+```
+
+
+
+## Test With Some Commonly Used Compounds With Parentheses 
+To evaluate whether the molar mass function works correctly, it is important to test it using a set of familiar and commonly used chemical compounds. The compounds selected—H₂O, CO₂, SO₂, CaF₂, NaCl, and Cl₂—represent a variety of bonding types, element combinations, and formula structures. By including both two-element molecules and multi-atom ionic compounds, the test set helps confirm that the parsing function correctly identifies element symbols, reads subscripts accurately, and multiplies each atomic mass by the appropriate quantity.
+Testing the function with compounds like water and carbon dioxide provides a straightforward check because their molar masses are well known and easy to verify manually. More complex examples such as calcium fluoride or sulfur dioxide demonstrate that the function can handle multi-element structures and incorporate correct atomic weights for metals, nonmetals, and halogens. Finally, including a diatomic molecule like Cl₂ helps ensure that the counting component works properly even when the formula contains only one repeated element.
+After running the test list, the resulting molar masses can be compared with known values from the periodic table. If the computed results match these accepted values, it confirms that the molar‐mass function is functioning accurately and can be reliably used for additional chemical calculations throughout the project.
+
+
+
+#### The table below lists the calculated molar masses using atomic weights from the periodic table.
+
+
+```{python}
+compounds = ["H2O", "CO2", "CaF2", "Mg(OH)2", "Ca(OH)2", "Al(OH)3"]
+#masses = [molar_mass(c) for c in compounds]
 df = pd.DataFrame({
     "Compound": compounds,
     "Molar Mass (g/mol)": masses
@@ -114,7 +211,32 @@ df = pd.DataFrame({
 df
 ```
 
+
+
+
+## Table 1
+Table 1 displays the calculated molar masses for a set of commonly used chemical compounds, generated directly through the molar-mass function. Presenting the results in a table is important because it allows the computed values to be compared side-by-side in a clear and organized format. By listing both the compound name and its molar mass, the table demonstrates how the program handles a variety of formula structures, including simple molecules such as H₂O, linear compounds like CO₂, ionic solids such as CaF₂, and diatomic species like Cl₂. The consistent agreement between these computed values and their known theoretical molar masses confirms that the algorithm is interpreting chemical formulas accurately and applying atomic weights correctly.
+This table also highlights the strengths of scientific computing in chemistry. Instead of manually calculating each compound’s molar mass — a process that becomes slower and more error-prone as formulas become more complex — the code performs the calculation instantly and with perfect consistency. The table therefore acts as visual evidence that computational tools can automate repetitive chemical calculations while maintaining accuracy, which supports the broader argument of the essay.
+
+
+#### The table above lists the calculated molar masses using atomic weights from the periodic table.
+
+
+```{python}
+df = pd.DataFrame({
+    "Compound": compounds,
+    "Molar Mass (g/mol)": masses,
+})
+df
+```
+
+
+
 ## Graph 1
+Graph 1 provides a visual comparison of the molar masses calculated by the program for six commonly encountered compounds. Displaying these values as a bar graph helps illustrate not only the numerical differences but also how computational tools make chemical patterns easier to interpret. For example, compounds such as Cl₂ and CaF₂ appear significantly heavier than lighter molecules like H₂O and CO₂, and this difference becomes immediately obvious in the visualization. A chart like this transforms raw numerical results into a form that the human eye can quickly process, emphasizing one of the main strengths of scientific computing: its ability to convert data into visual insights.
+The graph also supports the argument that scientific computing enhances chemical analysis by reducing the cognitive load on the researcher. Instead of manually comparing a list of molar masses, the graph communicates the relationships automatically. It reinforces the reliability of the underlying code as well—because the pattern shown aligns with known chemical principles, such as heavier atoms contributing to higher molar masses. Ultimately, Graph 1 demonstrates how computational tools combine calculation and visualization to improve understanding, efficiency, and scientific communication.
+
+
 ```{python}
 plt.figure(figsize=(6,4))
 plt.bar(df["Compound"], df["Molar Mass (g/mol)"])
@@ -124,23 +246,69 @@ plt.ylabel("Molar Mass (g/mol)")
 plt.show()
 ```
 
+
+
 ## Table 2
-This table shows the 
+Table 2 shows the total number of atoms present in each compound, calculated automatically by the atom_count() function. This table serves as an additional layer of chemical analysis, demonstrating that the code is capable of more than just summing atomic masses—it can also interpret structural information embedded in a chemical formula. Because the function correctly handles element symbols, numerical subscripts, and even parentheses, it provides an accurate count of how many atoms make up each molecule or ionic compound. Presenting this information in table form makes it easy to compare the structural complexity of different substances. For instance, CO₂ and SO₂ contain only three atoms total, while CaF₂ contains four and NaCl contains two. Even simple differences like these can influence physical properties and reactivity, which is why automated atom counting can be valuable in scientific workflows.
+This table also strengthens the overall argument of the project by showing how scientific computing allows us to extract multiple forms of chemical information from the same input data. Instead of performing repetitive hand calculations, the code processes each formula instantly and consistently. By expanding beyond molar mass alone, Table 2 highlights the versatility and efficiency of computational tools in modern chemistry.
+
+
+#### This Table Shows The Total Atoms
+
+
 ```{python}
 
 import re
-def atom_count(formula):
-    parts = re.findall(r'([A-Z][a-z]*)(\d*)', formula)
-    total = 0
-    for _, count in parts:
-        total += int(count) if count else 1
-    return total
 
-df["Total Atoms"] = [atom_count(c) for c in df["Compound"]]
+def atom_count(formula):
+    stack = [0]
+    i = 0
+
+    while i < len(formula):
+        if formula[i] == "(":
+            stack.append(0)
+            i += 1
+
+        elif formula[i] == ")":
+            i += 1
+            num = ""
+            while i < len(formula) and formula[i].isdigit():
+                num += formula[i]
+                i += 1
+            multiplier = int(num) if num else 1
+
+            group_total = stack.pop() * multiplier
+            stack[-1] += group_total
+
+        else:
+            # element symbol
+            elem = formula[i]
+            i += 1
+            while i < len(formula) and formula[i].islower():
+                elem += formula[i]
+                i += 1
+
+            # number after element
+            num = ""
+            while i < len(formula) and formula[i].isdigit():
+                num += formula[i]
+                i += 1
+            count = int(num) if num else 1
+
+            stack[-1] += count
+
+    return stack[0]
+
+df["Total Atoms"] = df["Compound"].apply(atom_count)
 df
 ```
 
+
+
 ## Graph 2
+Graph 2 visualizes the relationship between the total number of atoms in each compound and its molar mass. By plotting these two variables against each other, the graph provides an intuitive way to see how structural complexity influences the mass of a substance. Although the trend is not perfectly linear—because atoms differ significantly in their individual atomic masses—the graph still shows a general upward pattern, where compounds with more atoms tend to have higher molar masses. For example, CaF₂ has four atoms and a noticeably larger molar mass compared to compounds like CO₂ or NaCl, even though some of those molecules contain heavier individual elements. This illustrates an important concept: molar mass is determined not only by the number of atoms but also by their types, and scientific computing helps capture both of these factors accurately.
+Beyond the chemical interpretation, this graph also strengthens the project’s argument for the value of computational tools. Without code, generating this kind of visualization would require manual calculations, graphing, and formatting. By using Python, the entire dataset can be processed and plotted automatically, making it easy to explore patterns and test hypotheses. This demonstrates how scientific computing enhances both efficiency and analytical depth in chemistry-focused research.
+
 
 ```{python}
 plt.figure(figsize=(6,4))
@@ -153,10 +321,18 @@ plt.show()
 ```
 
 
+## Using SymPy To Create Symbolic Mathematical Models
+SymPy’s symbolic math capabilities illustrate a different advantage of scientific computing. Instead of simply calculating numbers, SymPy allows us to construct general equations, such as the formula for the molar mass of water:
 
-# Define symbols
+Molar mass of H2O = (2 * Molar mass of H) + (1 * Molar mass of O)	
+
+This represents molar mass conceptually, not numerically. It demonstrates how symbolic computation can express relationships between variables in ways that remain adaptable. If atomic mass values change, or if the equation is extended to include isotopes, the symbolic structure remains valid. This supports the argument that scientific computing increases flexibility in problem-solving.
+By integrating symbolic math with numerical computation, scientific computing shows its strength: handling both general principles and specific data within the same environment. This duality is essential in modern scientific work and reinforces why computing is now standard in chemistry research.
+
+#### Define Symbols
 
 - We can also use SymPy to represent the molar mass equation symbolically.
+
 
 ```{python}
 n_H, n_O = sp.symbols('n_H n_O')
@@ -164,9 +340,11 @@ M_H, M_O = sp.symbols('M_H M_O')
 ```
 
 
-# Equation for water molar mass
+
+#### Equation For Water Molar Mass Example:
 
 - This symbolic representation shows how the molar mass of water depends on its atomic components.
+
 
 ```{python}
 M_H2O = sp.Eq(sp.Symbol('M_H2O'), 2*M_H + M_O)
@@ -175,7 +353,7 @@ M_H2O
 
 
 
-# Define a symbolic equation for molar mass using SymPy
+#### Define A Symbolic Equation For Molar Mass Using SymPy
 
 The molar mass (M) of a compound is the mass of one mole of its molecules or formula units, measured in grams per mole (g/mol).
 It can be calculated by summing the atomic masses of all atoms in the compound.
@@ -185,8 +363,28 @@ Mathematically, this can be expressed as:
 - m = mass of the sample (g)
 - n = number of moles (mol)
 
+
 ```{python}
 M, n, m = sp.symbols('M n m')
 eq = sp.Eq(M, m/n)
 sp.latex(eq)
 ```
+
+
+
+## Connecting the Evidence: A Line of Reasoning Supporting Scientific Computing
+Every component of this project—from dictionary data storage to recursive parsing, from tables to graphs, and from symbolic equations to numerical results—supports the central argument that scientific computing is essential for modern chemistry.
+Each code block demonstrates an ability of computers that enhances human learning:
+Automation reduces repetitive tasks.
+Visualization makes abstract relationships understandable.
+Symbolic math connects concepts to calculations.
+Pattern recognition ensures consistent interpretation of formulas.
+Structured data improves communication and analysis.
+Error reduction protects scientific integrity.
+Together, these form a consistent line of reasoning. Scientific computing strengthens chemistry education by simplifying the mechanical aspects of calculations while deepening conceptual understanding. It empowers students to explore more complex ideas without being held back by tedious, error-prone processes. In doing so, it becomes not a replacement for learning but a tool that amplifies it.
+
+
+
+## Conclusion: Scientific Computing Is an Essential Tool for Chemistry
+This project demonstrates that scientific computing is far more than a convenient way to calculate molar masses. It is a framework that enhances learning, improves accuracy, and opens the door to complex analysis that would be unrealistic by hand. Whether computing atomic totals, parsing nested molecular structures, or visualizing relationships between chemical properties, computers expand the reach of what students can accomplish.
+Scientific computing equips learners with tools used by real researchers, preparing them for careers in science, engineering, medicine, and technology. For these reasons, I conclude that scientific computing is not only beneficial in chemistry—it is indispensable. It empowers students to think critically, analyze data efficiently, and understand chemistry more deeply than traditional methods alone would allow.

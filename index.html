@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lisandra Perez Beltran">
+<meta name="dcterms.date" content="2025-11-14">
 
-<title>index</title>
+<title>College Colloquium Final — Scientific Computing &amp; Molar Mass</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,14 +116,26 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">College Colloquium Final</h1>
+<h1 class="title">College Colloquium Final — Scientific Computing &amp; Molar Mass</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lisandra Perez Beltran </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 14, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -131,23 +145,28 @@ window.Quarto = {
 </header>
 
 
-<section id="calculating-molar-mass-of-chemical-compounds" class="level2">
-<h2 class="anchored" data-anchor-id="calculating-molar-mass-of-chemical-compounds">Calculating Molar Mass of Chemical Compounds</h2>
-<p>The concept of <strong>molar mass</strong> lies at the heart of chemistry because it connects the microscopic world of atoms to the macroscopic world of measurable substances. Molar mass, measured in grams per mole (g/mol), represents the mass of one mole of a chemical substance. One mole equals (6.022 ^{23}) entities — the famous <strong>Avogadro’s number</strong>. Understanding molar mass is essential because it allows chemists to convert between the mass of a substance and the number of particles it contains. This relationship is the foundation of stoichiometry, chemical reactions, and solution chemistry. For example, knowing that one mole of carbon dioxide (CO₂) has a molar mass of 44.01 g/mol allows a scientist to determine that 88.02 grams of CO₂ equals exactly two moles.<br>
-This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonstrate how programming tools like SymPy, pandas, and Matplotlib can automate and visualize chemical concepts. The goal is to calculate molar masses of different compounds, organize the results into tables, display graphical relationships, and symbolically represent the equations used in chemistry.</p>
+<section id="introduction-the-value-of-scientific-computing-in-chemistry" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-the-value-of-scientific-computing-in-chemistry">Introduction: The Value of Scientific Computing in Chemistry</h2>
+<p>Scientific computing is transforming the way students, scientists, and industries approach chemistry. In the past, tasks like calculating molar mass, analyzing molecular structure, or modeling reactions were often done entirely by hand, which introduced human error and limited the complexity of problems that could be solved. My project demonstrates how scientific computing enhances accuracy, improves efficiency, and makes chemical analysis more accessible. By designing functions in Python to compute molar masses, parse chemical formulas, and visualize trends using graphs, I show how computational tools strengthen understanding rather than replace it. My argument is that scientific computing is not just helpful—it is essential for modern scientific learning and research. One of the key points supporting this claim is the reliability and repeatability of computer-based calculations. When calculating molar masses manually, students must carefully read formulas, identify each element, apply subscripts, and add atomic masses correctly. A single misread number or incorrect symbol results in the wrong answer. Scientific computing eliminates this problem by automating the parsing process through code. This project demonstrates that when computers handle repetitive, rule-based tasks, students can spend more time learning the science and less time worrying about arithmetic mistakes.</p>
 </section>
-<section id="import-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="import-libraries">import libraries</h2>
-<p>To perform calculations, we import several Python libraries. <code>SymPy</code> handles symbolic mathematics, <code>pandas</code> creates and manages tables, and <code>matplotlib.pyplot</code> produces graphs for visualization.</p>
-<div id="0a633ca2" class="cell" data-execution_count="1">
+<section id="python-libraries-how-it-enable-scientific-problem-solving" class="level2">
+<h2 class="anchored" data-anchor-id="python-libraries-how-it-enable-scientific-problem-solving">Python Libraries: How It Enable Scientific Problem-Solving</h2>
+<p>The first section of my code imports essential Python libraries—SymPy, pandas, and matplotlib. Each of these tools contributes differently to scientific computing, and understanding their roles helps build the argument for why computational methods have become foundational in chemistry. SymPy allows symbolic math operations, such as creating mathematical expressions representing molar mass equations. This is something virtually impossible to replicate by hand with the same clarity and automation. Pandas is used to create tables, which organize chemical data visually and make trends easier to recognize. Finally, matplotlib enables the construction of graphs, allowing us to visualize relationships such as the correlation between atom count and molar mass.</p>
+<section id="import-libraries" class="level4">
+<h4 class="anchored" data-anchor-id="import-libraries">Import Libraries</h4>
+<div id="71a16de7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="define-the-atomic-masses-amu-of-the-first-25-elements-in-the-periodic-table-gmol" class="level2">
-<h2 class="anchored" data-anchor-id="define-the-atomic-masses-amu-of-the-first-25-elements-in-the-periodic-table-gmol">Define the atomic masses (amu) of the first 25 elements in the periodic table (g/mol)</h2>
-<div id="b2703c73" class="cell" data-execution_count="2">
+</section>
+<section id="building-the-atomic-mass-dictionary-a-foundation-for-automation" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-atomic-mass-dictionary-a-foundation-for-automation">Building the Atomic Mass Dictionary: A Foundation for Automation</h2>
+<p>The dictionary of atomic masses demonstrates another advantage of scientific computation—centralized, organized information. Listing the atomic masses of the first 25 elements in a dictionary might seem simple, but it reflects a greater benefit: once entered, these values can be accessed automatically by any function that needs them. Students no longer flip through periodic tables or scroll through online charts every time they calculate the molar mass of a substance. Instead, the computer stores these values reliably and retrieves them instantly. From an educational perspective, this helps students focus on why molar masses matter, not on the tedious process of looking up each value repeatedly. From a computational perspective, it demonstrates how data structures like dictionaries reduce errors associated with manual transcription. This supports the larger thesis that scientific computing allows chemistry students to work more efficiently and with fewer mistakes. Additionally, using a dictionary emphasizes the importance of structured data storage when dealing with scientific information. Unlike handwritten notes, digital data does not fade, get misplaced, or become illegible. It provides consistency across calculations, which is crucial in scientific analysis. The fact that such a small piece of code can store and use scientific constants underscores how computing democratizes chemical problem-solving.</p>
+<section id="define-the-atomic-masses-amu-of-the-first-25-elements-in-the-periodic-table-gmol" class="level4">
+<h4 class="anchored" data-anchor-id="define-the-atomic-masses-amu-of-the-first-25-elements-in-the-periodic-table-gmol">Define The Atomic Masses (amu) Of The First 25 Elements In The Periodic Table (g/mol)</h4>
+<div id="b3ba63c0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>atomic_masses <span class="op">=</span> {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"H"</span>: <span class="fl">1.008</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"He"</span>: <span class="fl">4.0026</span>,</span>
@@ -182,69 +201,127 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="function-to-calculate-molar-mass" class="level2">
-<h2 class="anchored" data-anchor-id="function-to-calculate-molar-mass">Function to calculate molar mass</h2>
-<div id="099e95d9" class="cell" data-execution_count="3">
+</section>
+<section id="parsing-chemical-formulas-a-demonstration-of-computational-precision" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-chemical-formulas-a-demonstration-of-computational-precision">Parsing Chemical Formulas: A Demonstration of Computational Precision</h2>
+<p>The next major section of my project introduces a function that parses chemical formulas like “H2O” or “CaF2” into their separate elements and counts. The find_elements() function breaks compounds into element symbols, identifies whether each symbol contains one or two letters, reads any numerical subscripts, and compiles everything into a structured list for calculation. This automated process demonstrates one of the strongest benefits of scientific computing: precision in rule-based systems. Chemical formulas follow predictable structural rules. Elements begin with capital letters, may or may not include lowercase letters, and may have numerical subscripts. While humans understand these patterns intuitively, consistently applying the rules without mistakes becomes challenging with longer or more complex formulas. A computer, however, never becomes tired, distracted, or inconsistent. Its pattern recognition through regular expressions ensures every molecule is interpreted correctly. This supports the essay’s argument because it shows that computers excel at systematic tasks that humans often perform imperfectly. Instead of treating scientific computing as a threat to learning, we can view it as a tool that strengthens understanding by removing the burden of error-prone tasks. Students remain responsible for interpreting the results, but computers ensure those results are accurate.</p>
+<section id="function-to-calculate-molar-mass" class="level4">
+<h4 class="anchored" data-anchor-id="function-to-calculate-molar-mass">Function To Calculate Molar Mass</h4>
+<div id="e2ecc4ce" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_elements(compound):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    elements <span class="op">=</span> []</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> compound <span class="op">!=</span> <span class="st">""</span>:  <span class="co">#while its not empty </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If only one character left</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">==</span> <span class="dv">1</span>: <span class="co">#seeing if there's onlyone more element  </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            elements.append((compound, <span class="dv">1</span>)) <span class="co"># adding that one element to the elements list, with a count of 1</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span> <span class="co"># stops the loop, meaning that we are done</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If second char is lowercase (two-letter element)</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> compound[<span class="dv">1</span>].islower(): <span class="co"># checking if it's a two letter element </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            element <span class="op">=</span> compound[<span class="dv">0</span>:<span class="dv">2</span>] <span class="co"># assigning the two letters to the element variable </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">&gt;</span> <span class="dv">2</span> <span class="kw">and</span> compound[<span class="dv">2</span>].isdigit(): <span class="co"># checking if there are still more characters and if it's a number </span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> <span class="bu">int</span>(compound[<span class="dv">2</span>]) <span class="co"># if it is a number, assign that number to count </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                elements.append((element, count))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">3</span>:] <span class="co"># its deleting the first 3 from compound (two letter element + count)</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:<span class="co">#if there is no number after the two letter element </span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                elements.append((element, <span class="dv">1</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">2</span>:]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Otherwise single-letter element</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            element <span class="op">=</span> compound[<span class="dv">0</span>]</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> compound[<span class="dv">1</span>].isdigit():</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> <span class="bu">int</span>(compound[<span class="dv">1</span>])</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                elements.append((element, count))</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">2</span>:]</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                elements.append((element, <span class="dv">1</span>))</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">1</span>:]</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(elements)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> molar_mass(formula):</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    elements <span class="op">=</span> find_elements(formula)    </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    total_mass <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> element, count <span class="kw">in</span> elements:</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        total_mass <span class="op">+=</span> atomic_masses[element] <span class="op">*</span> count</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_mass</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    atoms <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> compound <span class="op">!=</span> <span class="st">""</span>:  <span class="co"># while its not empty </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If only one character left</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">==</span> <span class="dv">1</span>: <span class="co"># seeing if there's onlyone more element  </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            elements.append((compound, <span class="dv">1</span>)) <span class="co"># adding that one element to the elements list, with a count of 1</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            atoms <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span> <span class="co"># stops the loop, meaning that we are done</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If second char is lowercase (two-letter element)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> compound[<span class="dv">1</span>].islower(): <span class="co"># checking if it's a two letter element </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            element <span class="op">=</span> compound[<span class="dv">0</span>:<span class="dv">2</span>] <span class="co"># assigning the two letters to the element variable </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">&gt;</span> <span class="dv">2</span> <span class="kw">and</span> compound[<span class="dv">2</span>].isdigit(): <span class="co"># checking if there are still more characters and if it's a number </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> <span class="bu">int</span>(compound[<span class="dv">2</span>]) <span class="co"># if it is a number, assign that number to count </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                elements.append((element, count))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                atoms <span class="op">+=</span> count</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">3</span>:] <span class="co"># its deleting the first 3 from compound (two letter element + count)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:<span class="co">#if there is no number after the two letter element </span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                elements.append((element, <span class="dv">1</span>))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                atoms <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">2</span>:]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Otherwise single-letter element</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            element <span class="op">=</span> compound[<span class="dv">0</span>]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(compound) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">and</span> compound[<span class="dv">1</span>].isdigit():</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> <span class="bu">int</span>(compound[<span class="dv">1</span>])</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                elements.append((element, count))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                atoms <span class="op">+=</span> count</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">2</span>:]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                elements.append((element, <span class="dv">1</span>))</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                atoms <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                compound <span class="op">=</span> compound[<span class="dv">1</span>:]</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> elements</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> molar_mass(formula):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    elements <span class="op">=</span> find_elements(formula)    </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    total_mass <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> element, count <span class="kw">in</span> elements:</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        total_mass <span class="op">+=</span> atomic_masses[element] <span class="op">*</span> count</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        a <span class="op">+=</span> count</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total_mass, a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="test-with-some-commonly-used-compounds" class="level2">
-<h2 class="anchored" data-anchor-id="test-with-some-commonly-used-compounds">Test with some commonly used compounds</h2>
+</section>
+<section id="calculating-molar-mass-from-concept-to-computation" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-molar-mass-from-concept-to-computation">Calculating Molar Mass: From Concept to Computation</h2>
+<p>The custom-built molar_mass() function is central to the project’s purpose. It takes a chemical formula and calculates the sum of the atomic masses multiplied by each element’s count. This replicates a core chemistry skill—but through code rather than manual arithmetic. What makes this compelling evidence for scientific computing is that the logic remains the same: the program does not magically “know” chemistry; instead, it follows the exact steps a student would, only faster and with fewer mistakes. This supports the thesis that scientific computing enhances learning: by coding chemistry concepts, students must understand the rules deeply enough to teach them to a machine. The function forces the programmer to analyze questions like: How do you identify an element symbol? What happens when an element has no subscript? How do you handle multi-digit subscripts? What if the compound contains parentheses? These are not surface-level questions. Thinking through them reinforces comprehension far better than simply memorizing molar masses for a test. Therefore, scientific computing not only assists with calculation but strengthens conceptual understanding.</p>
+<section id="test-with-some-commonly-used-compounds" class="level4">
+<h4 class="anchored" data-anchor-id="test-with-some-commonly-used-compounds">Test With Some Commonly Used Compounds</h4>
 <ul>
 <li>The table below lists the calculated molar masses using atomic weights from the periodic table.</li>
 </ul>
-<div id="f4bf8432" class="cell" data-execution_count="4">
+<div id="5d1e42e5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> [<span class="st">"H2O"</span>, <span class="st">"CO2"</span>, <span class="st">"SO2"</span>, <span class="st">"CaF2"</span>, <span class="st">"NaCl"</span>, <span class="st">"Cl2"</span>]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>masses <span class="op">=</span> [molar_mass(c) <span class="cf">for</span> c <span class="kw">in</span> compounds]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>atoms <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>masses <span class="op">=</span> []</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> compounds:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    mass, atom <span class="op">=</span> molar_mass(c)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    masses.append(mass)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    atoms.append(atom)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="table-1" class="level2">
-<h2 class="anchored" data-anchor-id="table-1">Table 1</h2>
-<ul>
-<li>The table above lists the calculated molar masses using atomic weights from the periodic table.</li>
-</ul>
-<div id="4b950925" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: compounds,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molar Mass (g/mol)"</span>: masses</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+</section>
+<section id="extending-functionality-handling-parentheses-in-chemical-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="extending-functionality-handling-parentheses-in-chemical-formulas">Extending Functionality: Handling Parentheses in Chemical Formulas</h2>
+<p>Chemistry often includes compounds with parentheses, such as Mg(OH)₂ or Al(OH)₃. These formulas contain groups of atoms that must be multiplied by the subscript outside the parentheses. Without handling these structures, a molar-mass calculator would be incomplete. The extended version of molar_mass() provides this functionality through recursive parsing. This supports the essay’s argument because it shows how computing adapts to scientific complexity. Students can extend the logic of a simple function to accommodate more challenging structures, reinforcing the idea that coding requires—and builds—critical thinking. In addition, recursive algorithms reveal the deeper connections between computer science and chemistry: both fields rely on patterns, structure, and rules. Scientific computing bridges these concepts, encouraging interdisciplinary learning.</p>
+<section id="function-to-calculate-molar-mass-with-parentheses" class="level4">
+<h4 class="anchored" data-anchor-id="function-to-calculate-molar-mass-with-parentheses">Function To Calculate Molar Mass With Parentheses</h4>
+<div id="b953d093" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> molar_mass(formula):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Helper function to recursively evaluate parentheses</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parse(formula):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Find any parentheses groups like (OH)2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="st">'('</span> <span class="kw">in</span> formula:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            match <span class="op">=</span> re.search(<span class="vs">r'</span><span class="ch">\(</span><span class="kw">(</span><span class="pp">[A-Za-z0-9]</span><span class="op">+</span><span class="kw">)</span><span class="ch">\)</span><span class="kw">(</span><span class="dv">\d</span><span class="op">*</span><span class="kw">)</span><span class="vs">'</span>, formula)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> match:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            group, count <span class="op">=</span> match.groups()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> <span class="bu">int</span>(count) <span class="cf">if</span> count <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            group_mass <span class="op">=</span> parse(group)  <span class="co"># Recursively calculate inside parentheses</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            formula <span class="op">=</span> formula[:match.start()] <span class="op">+</span> <span class="bu">str</span>(group_mass <span class="op">*</span> count) <span class="op">+</span> formula[match.end():]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Once parentheses are resolved, calculate total for remaining elements</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        elements <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="kw">(</span><span class="pp">[A-Z][a-z]</span><span class="op">*</span><span class="kw">)(</span><span class="dv">\d</span><span class="op">*</span><span class="kw">)</span><span class="vs">'</span>, formula)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> element, count <span class="kw">in</span> elements:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> element <span class="kw">not</span> <span class="kw">in</span> atomic_masses:</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Unknown element: </span><span class="sc">{</span>element<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> <span class="bu">int</span>(count) <span class="cf">if</span> count <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            total <span class="op">+=</span> atomic_masses[element] <span class="op">*</span> count</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> total</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parse(formula)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="test-with-some-commonly-used-compounds-with-parentheses" class="level2">
+<h2 class="anchored" data-anchor-id="test-with-some-commonly-used-compounds-with-parentheses">Test With Some Commonly Used Compounds With Parentheses</h2>
+<p>To evaluate whether the molar mass function works correctly, it is important to test it using a set of familiar and commonly used chemical compounds. The compounds selected—H₂O, CO₂, SO₂, CaF₂, NaCl, and Cl₂—represent a variety of bonding types, element combinations, and formula structures. By including both two-element molecules and multi-atom ionic compounds, the test set helps confirm that the parsing function correctly identifies element symbols, reads subscripts accurately, and multiplies each atomic mass by the appropriate quantity. Testing the function with compounds like water and carbon dioxide provides a straightforward check because their molar masses are well known and easy to verify manually. More complex examples such as calcium fluoride or sulfur dioxide demonstrate that the function can handle multi-element structures and incorporate correct atomic weights for metals, nonmetals, and halogens. Finally, including a diatomic molecule like Cl₂ helps ensure that the counting component works properly even when the formula contains only one repeated element. After running the test list, the resulting molar masses can be compared with known values from the periodic table. If the computed results match these accepted values, it confirms that the molar‐mass function is functioning accurately and can be reliably used for additional chemical calculations throughout the project.</p>
+<section id="the-table-below-lists-the-calculated-molar-masses-using-atomic-weights-from-the-periodic-table." class="level4">
+<h4 class="anchored" data-anchor-id="the-table-below-lists-the-calculated-molar-masses-using-atomic-weights-from-the-periodic-table.">The table below lists the calculated molar masses using atomic weights from the periodic table.</h4>
+<div id="800cf8e2" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>compounds <span class="op">=</span> [<span class="st">"H2O"</span>, <span class="st">"CO2"</span>, <span class="st">"CaF2"</span>, <span class="st">"Mg(OH)2"</span>, <span class="st">"Ca(OH)2"</span>, <span class="st">"Al(OH)3"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#masses = [molar_mass(c) for c in compounds]</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: compounds,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molar Mass (g/mol)"</span>: masses</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -269,22 +346,22 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>SO2</td>
+<td>CaF2</td>
 <td>64.063</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>CaF2</td>
+<td>Mg(OH)2</td>
 <td>78.074</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>NaCl</td>
+<td>Ca(OH)2</td>
 <td>58.440</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
-<td>Cl2</td>
+<td>Al(OH)3</td>
 <td>70.900</td>
 </tr>
 </tbody>
@@ -294,19 +371,83 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 </div>
 </div>
 </section>
+</section>
+<section id="table-1" class="level2">
+<h2 class="anchored" data-anchor-id="table-1">Table 1</h2>
+<p>Table 1 displays the calculated molar masses for a set of commonly used chemical compounds, generated directly through the molar-mass function. Presenting the results in a table is important because it allows the computed values to be compared side-by-side in a clear and organized format. By listing both the compound name and its molar mass, the table demonstrates how the program handles a variety of formula structures, including simple molecules such as H₂O, linear compounds like CO₂, ionic solids such as CaF₂, and diatomic species like Cl₂. The consistent agreement between these computed values and their known theoretical molar masses confirms that the algorithm is interpreting chemical formulas accurately and applying atomic weights correctly. This table also highlights the strengths of scientific computing in chemistry. Instead of manually calculating each compound’s molar mass — a process that becomes slower and more error-prone as formulas become more complex — the code performs the calculation instantly and with perfect consistency. The table therefore acts as visual evidence that computational tools can automate repetitive chemical calculations while maintaining accuracy, which supports the broader argument of the essay.</p>
+<section id="the-table-above-lists-the-calculated-molar-masses-using-atomic-weights-from-the-periodic-table." class="level4">
+<h4 class="anchored" data-anchor-id="the-table-above-lists-the-calculated-molar-masses-using-atomic-weights-from-the-periodic-table.">The table above lists the calculated molar masses using atomic weights from the periodic table.</h4>
+<div id="e4034898" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Compound"</span>: compounds,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molar Mass (g/mol)"</span>: masses,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Compound</th>
+<th data-quarto-table-cell-role="th">Molar Mass (g/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>H2O</td>
+<td>18.015</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>CO2</td>
+<td>44.009</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>CaF2</td>
+<td>64.063</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Mg(OH)2</td>
+<td>78.074</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Ca(OH)2</td>
+<td>58.440</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Al(OH)3</td>
+<td>70.900</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="graph-1" class="level2">
 <h2 class="anchored" data-anchor-id="graph-1">Graph 1</h2>
-<div id="07f1de52" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">"Compound"</span>], df[<span class="st">"Molar Mass (g/mol)"</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Molar Masses of Common Compounds"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Compound"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Molar Mass (g/mol)"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Graph 1 provides a visual comparison of the molar masses calculated by the program for six commonly encountered compounds. Displaying these values as a bar graph helps illustrate not only the numerical differences but also how computational tools make chemical patterns easier to interpret. For example, compounds such as Cl₂ and CaF₂ appear significantly heavier than lighter molecules like H₂O and CO₂, and this difference becomes immediately obvious in the visualization. A chart like this transforms raw numerical results into a form that the human eye can quickly process, emphasizing one of the main strengths of scientific computing: its ability to convert data into visual insights. The graph also supports the argument that scientific computing enhances chemical analysis by reducing the cognitive load on the researcher. Instead of manually comparing a list of molar masses, the graph communicates the relationships automatically. It reinforces the reliability of the underlying code as well—because the pattern shown aligns with known chemical principles, such as heavier atoms contributing to higher molar masses. Ultimately, Graph 1 demonstrates how computational tools combine calculation and visualization to improve understanding, efficiency, and scientific communication.</p>
+<div id="7b778348" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">"Compound"</span>], df[<span class="st">"Molar Mass (g/mol)"</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Molar Masses of Common Compounds"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Compound"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Molar Mass (g/mol)"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-7-output-1.png" width="510" height="376" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-9-output-1.png" width="510" height="376" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -314,19 +455,54 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 </section>
 <section id="table-2" class="level2">
 <h2 class="anchored" data-anchor-id="table-2">Table 2</h2>
-<p>This table shows the</p>
-<div id="0e47b512" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> atom_count(formula):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> re.findall(<span class="vs">r'</span><span class="kw">(</span><span class="pp">[A-Z][a-z]</span><span class="op">*</span><span class="kw">)(</span><span class="dv">\d</span><span class="op">*</span><span class="kw">)</span><span class="vs">'</span>, formula)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, count <span class="kw">in</span> parts:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> <span class="bu">int</span>(count) <span class="cf">if</span> count <span class="cf">else</span> <span class="dv">1</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Total Atoms"</span>] <span class="op">=</span> [atom_count(c) <span class="cf">for</span> c <span class="kw">in</span> df[<span class="st">"Compound"</span>]]</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<p>Table 2 shows the total number of atoms present in each compound, calculated automatically by the atom_count() function. This table serves as an additional layer of chemical analysis, demonstrating that the code is capable of more than just summing atomic masses—it can also interpret structural information embedded in a chemical formula. Because the function correctly handles element symbols, numerical subscripts, and even parentheses, it provides an accurate count of how many atoms make up each molecule or ionic compound. Presenting this information in table form makes it easy to compare the structural complexity of different substances. For instance, CO₂ and SO₂ contain only three atoms total, while CaF₂ contains four and NaCl contains two. Even simple differences like these can influence physical properties and reactivity, which is why automated atom counting can be valuable in scientific workflows. This table also strengthens the overall argument of the project by showing how scientific computing allows us to extract multiple forms of chemical information from the same input data. Instead of performing repetitive hand calculations, the code processes each formula instantly and consistently. By expanding beyond molar mass alone, Table 2 highlights the versatility and efficiency of computational tools in modern chemistry.</p>
+<section id="this-table-shows-the-total-atoms" class="level4">
+<h4 class="anchored" data-anchor-id="this-table-shows-the-total-atoms">This Table Shows The Total Atoms</h4>
+<div id="621ecdc8" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> atom_count(formula):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    stack <span class="op">=</span> [<span class="dv">0</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(formula):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> formula[i] <span class="op">==</span> <span class="st">"("</span>:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>            stack.append(<span class="dv">0</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> formula[i] <span class="op">==</span> <span class="st">")"</span>:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(formula) <span class="kw">and</span> formula[i].isdigit():</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                num <span class="op">+=</span> formula[i]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            multiplier <span class="op">=</span> <span class="bu">int</span>(num) <span class="cf">if</span> num <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>            group_total <span class="op">=</span> stack.pop() <span class="op">*</span> multiplier</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>            stack[<span class="op">-</span><span class="dv">1</span>] <span class="op">+=</span> group_total</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            <span class="co"># element symbol</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            elem <span class="op">=</span> formula[i]</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(formula) <span class="kw">and</span> formula[i].islower():</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                elem <span class="op">+=</span> formula[i]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            <span class="co"># number after element</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(formula) <span class="kw">and</span> formula[i].isdigit():</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                num <span class="op">+=</span> formula[i]</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> <span class="bu">int</span>(num) <span class="cf">if</span> num <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>            stack[<span class="op">-</span><span class="dv">1</span>] <span class="op">+=</span> count</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stack[<span class="dv">0</span>]</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Total Atoms"</span>] <span class="op">=</span> df[<span class="st">"Compound"</span>].<span class="bu">apply</span>(atom_count)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -354,27 +530,27 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>SO2</td>
+<td>CaF2</td>
 <td>64.063</td>
 <td>3</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>CaF2</td>
+<td>Mg(OH)2</td>
 <td>78.074</td>
-<td>3</td>
+<td>5</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>NaCl</td>
+<td>Ca(OH)2</td>
 <td>58.440</td>
-<td>2</td>
+<td>5</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
-<td>Cl2</td>
+<td>Al(OH)3</td>
 <td>70.900</td>
-<td>2</td>
+<td>7</td>
 </tr>
 </tbody>
 </table>
@@ -383,64 +559,80 @@ This project uses <strong>Python</strong> and <strong>Quarto</strong> to demonst
 </div>
 </div>
 </section>
+</section>
 <section id="graph-2" class="level2">
 <h2 class="anchored" data-anchor-id="graph-2">Graph 2</h2>
-<div id="718edaab" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df[<span class="st">"Total Atoms"</span>], df[<span class="st">"Molar Mass (g/mol)"</span>], marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Relationship Between Number of Atoms and Molar Mass"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of Atoms in Compound"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Molar Mass (g/mol)"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Graph 2 visualizes the relationship between the total number of atoms in each compound and its molar mass. By plotting these two variables against each other, the graph provides an intuitive way to see how structural complexity influences the mass of a substance. Although the trend is not perfectly linear—because atoms differ significantly in their individual atomic masses—the graph still shows a general upward pattern, where compounds with more atoms tend to have higher molar masses. For example, CaF₂ has four atoms and a noticeably larger molar mass compared to compounds like CO₂ or NaCl, even though some of those molecules contain heavier individual elements. This illustrates an important concept: molar mass is determined not only by the number of atoms but also by their types, and scientific computing helps capture both of these factors accurately. Beyond the chemical interpretation, this graph also strengthens the project’s argument for the value of computational tools. Without code, generating this kind of visualization would require manual calculations, graphing, and formatting. By using Python, the entire dataset can be processed and plotted automatically, making it easy to explore patterns and test hypotheses. This demonstrates how scientific computing enhances both efficiency and analytical depth in chemistry-focused research.</p>
+<div id="698f2d12" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df[<span class="st">"Total Atoms"</span>], df[<span class="st">"Molar Mass (g/mol)"</span>], marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Relationship Between Number of Atoms and Molar Mass"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of Atoms in Compound"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Molar Mass (g/mol)"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-9-output-1.png" width="511" height="376" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-11-output-1.png" width="511" height="376" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="define-symbols" class="level1">
-<h1>Define symbols</h1>
+<section id="using-sympy-to-create-symbolic-mathematical-models" class="level2">
+<h2 class="anchored" data-anchor-id="using-sympy-to-create-symbolic-mathematical-models">Using SymPy To Create Symbolic Mathematical Models</h2>
+<p>SymPy’s symbolic math capabilities illustrate a different advantage of scientific computing. Instead of simply calculating numbers, SymPy allows us to construct general equations, such as the formula for the molar mass of water:</p>
+<p>Molar mass of H2O = (2 * Molar mass of H) + (1 * Molar mass of O)</p>
+<p>This represents molar mass conceptually, not numerically. It demonstrates how symbolic computation can express relationships between variables in ways that remain adaptable. If atomic mass values change, or if the equation is extended to include isotopes, the symbolic structure remains valid. This supports the argument that scientific computing increases flexibility in problem-solving. By integrating symbolic math with numerical computation, scientific computing shows its strength: handling both general principles and specific data within the same environment. This duality is essential in modern scientific work and reinforces why computing is now standard in chemistry research.</p>
+<section id="define-symbols" class="level4">
+<h4 class="anchored" data-anchor-id="define-symbols">Define Symbols</h4>
 <ul>
 <li>We can also use SymPy to represent the molar mass equation symbolically.</li>
 </ul>
-<div id="37465495" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>n_H, n_O <span class="op">=</span> sp.symbols(<span class="st">'n_H n_O'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>M_H, M_O <span class="op">=</span> sp.symbols(<span class="st">'M_H M_O'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e3d8a78b" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n_H, n_O <span class="op">=</span> sp.symbols(<span class="st">'n_H n_O'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>M_H, M_O <span class="op">=</span> sp.symbols(<span class="st">'M_H M_O'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="equation-for-water-molar-mass" class="level1">
-<h1>Equation for water molar mass</h1>
+<section id="equation-for-water-molar-mass-example" class="level4">
+<h4 class="anchored" data-anchor-id="equation-for-water-molar-mass-example">Equation For Water Molar Mass Example:</h4>
 <ul>
 <li>This symbolic representation shows how the molar mass of water depends on its atomic components.</li>
 </ul>
-<div id="91ff1cb0" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>M_H2O <span class="op">=</span> sp.Eq(sp.Symbol(<span class="st">'M_H2O'</span>), <span class="dv">2</span><span class="op">*</span>M_H <span class="op">+</span> M_O)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>M_H2O</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
+<div id="5e79042e" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>M_H2O <span class="op">=</span> sp.Eq(sp.Symbol(<span class="st">'M_H2O'</span>), <span class="dv">2</span><span class="op">*</span>M_H <span class="op">+</span> M_O)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>M_H2O</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
 <p><span class="math inline">\(\displaystyle M_{H2O} = 2 M_{H} + M_{O}\)</span></p>
 </div>
 </div>
 </section>
-<section id="define-a-symbolic-equation-for-molar-mass-using-sympy" class="level1">
-<h1>Define a symbolic equation for molar mass using SymPy</h1>
+<section id="define-a-symbolic-equation-for-molar-mass-using-sympy" class="level4">
+<h4 class="anchored" data-anchor-id="define-a-symbolic-equation-for-molar-mass-using-sympy">Define A Symbolic Equation For Molar Mass Using SymPy</h4>
 <p>The molar mass (M) of a compound is the mass of one mole of its molecules or formula units, measured in grams per mole (g/mol). It can be calculated by summing the atomic masses of all atoms in the compound. Mathematically, this can be expressed as:</p>
 <ul>
 <li>M = molar mass (g/mol)</li>
 <li>m = mass of the sample (g)</li>
 <li>n = number of moles (mol)</li>
 </ul>
-<div id="4c1b3f0e" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>M, n, m <span class="op">=</span> sp.symbols(<span class="st">'M n m'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>eq <span class="op">=</span> sp.Eq(M, m<span class="op">/</span>n)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sp.latex(eq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="7aead3de" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>M, n, m <span class="op">=</span> sp.symbols(<span class="st">'M n m'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>eq <span class="op">=</span> sp.Eq(M, m<span class="op">/</span>n)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sp.latex(eq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>'M = \\frac{m}{n}'</code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="connecting-the-evidence-a-line-of-reasoning-supporting-scientific-computing" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-the-evidence-a-line-of-reasoning-supporting-scientific-computing">Connecting the Evidence: A Line of Reasoning Supporting Scientific Computing</h2>
+<p>Every component of this project—from dictionary data storage to recursive parsing, from tables to graphs, and from symbolic equations to numerical results—supports the central argument that scientific computing is essential for modern chemistry. Each code block demonstrates an ability of computers that enhances human learning: Automation reduces repetitive tasks. Visualization makes abstract relationships understandable. Symbolic math connects concepts to calculations. Pattern recognition ensures consistent interpretation of formulas. Structured data improves communication and analysis. Error reduction protects scientific integrity. Together, these form a consistent line of reasoning. Scientific computing strengthens chemistry education by simplifying the mechanical aspects of calculations while deepening conceptual understanding. It empowers students to explore more complex ideas without being held back by tedious, error-prone processes. In doing so, it becomes not a replacement for learning but a tool that amplifies it.</p>
+</section>
+<section id="conclusion-scientific-computing-is-an-essential-tool-for-chemistry" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-scientific-computing-is-an-essential-tool-for-chemistry">Conclusion: Scientific Computing Is an Essential Tool for Chemistry</h2>
+<p>This project demonstrates that scientific computing is far more than a convenient way to calculate molar masses. It is a framework that enhances learning, improves accuracy, and opens the door to complex analysis that would be unrealistic by hand. Whether computing atomic totals, parsing nested molecular structures, or visualizing relationships between chemical properties, computers expand the reach of what students can accomplish. Scientific computing equips learners with tools used by real researchers, preparing them for careers in science, engineering, medicine, and technology. For these reasons, I conclude that scientific computing is not only beneficial in chemistry—it is indispensable. It empowers students to think critically, analyze data efficiently, and understand chemistry more deeply than traditional methods alone would allow.</p>
 </section>
 
 </main>
